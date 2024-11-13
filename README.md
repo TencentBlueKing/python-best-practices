@@ -43,7 +43,7 @@
   - [DB 建模](#db-建模)
     - [BBP-2001 如果字段的取值是一个有限集合，应使用 `choices` 选项声明枚举值](#bbp-2001-如果字段的取值是一个有限集合应使用-choices-选项声明枚举值)
     - [BBP-2002 如果某个字段或某组字段被频繁用于过滤或排序查询，建议建立单字段索引或联合索引](#bbp-2002-如果某个字段或某组字段被频繁用于过滤或排序查询建议建立单字段索引或联合索引)
-    - [BBP-2003 变更数据表时，新增字段尽量使用 `null=True` 而不是 `default`](#bbp-2003-变更数据表时新增字段尽量使用-nulltrue-而不是-default)
+    - [BBP-2003 变更数据表时，新增字段尽量使用 `null=True` 而不是 `default` 【过期-待商榷】](#bbp-2003-变更数据表时新增字段尽量使用-nulltrue-而不是-default)
   - [DB 查询](#db-查询)
     - [BBP-2004 使用 .exists() 判断数据是否存在](#bbp-2004-使用-exists-判断数据是否存在)
     - [BBP-2005 使用 .count() 查询数据条目数](#bbp-2005-使用-count-查询数据条目数)
@@ -711,6 +711,12 @@ new_field = models.CharField(null=True)
 前者将会在 `migrate` 操作时对已存在的数据批量刷新，对现有数据库带来不必要的影响。
 
 参考：https://pankrat.github.io/2015/django-migrations-without-downtimes/
+
+[过期-待商榷]
+
+原因: 老版本mysql和pgsql确实不支持快速加列功能，新版本的msyql和pg已经支持快速加列，所以这个提议是否需要更新
+
+参考：https://www.cnblogs.com/wy123/p/12875778.html
 
 
 ## DB 查询
